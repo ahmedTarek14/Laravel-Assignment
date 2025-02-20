@@ -124,15 +124,15 @@ All routes are prefixed with **`/api`** and protected by **Sanctum**.
 
 ### 🔑 Auth Routes
 
-- **POST** `/api/register` — Register a new user.
-- **POST** `/api/login` — Login and get token.
+- **POST** `/api/auth/register` — Register a new user.
+- **POST** `/api/auth/login` — Login and get token.
 
 ### ✅ Task Routes
 
-- **GET** `/api/tasks` — Get all tasks.
-- **POST** `/api/tasks` — Create a new task.
-- **PUT** `/api/tasks/{id}` — Update an existing task.
-- **DELETE** `/api/tasks/{id}` — Delete a task.
+- **GET** `/api/task/all` — Get all tasks.
+- **POST** `/api/task/create` — Create a new task.
+- **PUT** `/api/task/update/{id}` — Update an existing task.
+- **DELETE** `/api/task/delete/{id}` — Delete a task.
 
 ---
 

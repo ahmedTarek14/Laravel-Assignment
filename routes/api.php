@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\Task\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('auth.')
-    ->controller(AuthController::class)
-    ->group(function () {
-        Route::post('auth/login', 'login')->name('login');
-        Route::post('auth/register', 'register')->name('register');
-        Route::post('auth/logout', 'logout')->name('logout')->middleware('auth:sanctum');
-    });
+Route::name('auth.')->controller(AuthController::class)->group(function () {
+    Route::post('auth/login', 'login')->name('login');
+    Route::post('auth/register', 'register')->name('register');
+    Route::post('auth/logout', 'logout')->name('logout')->middleware('auth:sanctum');
+});
+
+
+Route::middleware('auth:sanctum')->controller(TaskController::class)->prefix('/task')->group(function () {
+    Route::get('/all', 'index');
+    Route::post('/create', 'store');
+    Route::put('/update/{task}', 'update');
+    Route::delete('/delete/{task}', 'destroy');
+});
