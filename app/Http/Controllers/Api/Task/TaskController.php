@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api\Task;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\TaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TaskController extends Controller
 {
@@ -19,6 +20,22 @@ class TaskController extends Controller
         try {
             return api_response_success($data);
         } catch (\Throwable $th) {
+            return api_response_error();
+        }
+    }
+
+    public function store(TaskRequest $request)
+    {
+        $request['user_id'] = sanctum()->id();
+
+        $task = Task::create($request->all());
+
+        try {
+            $data = new TaskResource($task);
+
+            return api_response_success($data);
+        } catch (\Throwable $th) {
+            // dd($th->getMessage());
             return api_response_error();
         }
     }
