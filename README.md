@@ -27,7 +27,7 @@ A simple **Laravel 10** RESTful API for managing tasks with **authentication** u
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/your-username/task-manager-api.git
+git clone https://github.com/ahmedTarek14/Laravel-Assignment.git
 cd task-manager-api
 ```
 
